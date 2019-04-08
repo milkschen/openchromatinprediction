@@ -16,29 +16,38 @@ df_id['gene_name2'] = l
 
 mg = mygene.MyGeneInfo()
 
-result = []
-log = []
+ensbl_gene_id = []
+ensbl_transcript_id = []
+# log = []
 for i, d in enumerate(df_id['gene_name2']):
     qry = mg.query(d, scopes="symbol", fields=["ensembl"], species="human", verbose=False)
     if len(qry) == 0:
-        result.append('')
-        log.append('empty query')
+        ensbl_gene_id.append('')
+        ensbl_transcript_id.append('')
+        # log.append('empty query')
         print (i, 'empty query')
         continue
     hits = qry['hits']
     if len(hits) == 0:
-        result.append('')
-        log.append('empty hits')
+        ensbl_gene_id.append('')
+        ensbl_transcript_id.append('')
+        # log.append('empty hits')
         print (i, 'empty hits')
         continue
     ensbl = hits[0]['ensembl']
     try:
-        result.append(ensbl['gene'])
-        log.append('1')
+        ensbl_gene_id.append(ensbl['gene'])
+        ensbl_transcript_id.append(ensbl['transcript'])
+        # log.append('1')
     except:
         print (i, 'multiple ensbl')
-        result.append(ensbl[0]['gene'])
-        log.append('{0} ensbls'.format(len(ensbl)))
+        ensbl_gene_id.append(ensbl[0]['gene'])
+        ensbl_transcript_id.append(ensbl[0]['transcript'])
+        # log.append('{0} ensbls'.format(len(ensbl)))
 
-df_id['ensembl'] = result
-df_id['ensembl-log'] = log
+df_id['ensembl-gene'] = ensbl_gene_id
+df_id['ensembl-transcript'] = ensbl_transcript_id
+# df_id['ensembl-log'] = log
+
+
+# df_rna = pd.read_csv('../ENCFF297CNO.tsv', sep='\t')
