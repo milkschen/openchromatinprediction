@@ -1,7 +1,7 @@
 import pandas as pd
 import mygene
 
-df_id = pd.read_csv('human_pwm_ids_sorted.txt', sep=' ', header=None, index_col=0)
+df_id = pd.read_csv('../human_pwm_ids_sorted.txt', sep=' ', header=None, index_col=0)
 df_id.index = range(0, df_id.shape[0])
 df_id.columns = ['MA', 'gene_name']
 l = []
