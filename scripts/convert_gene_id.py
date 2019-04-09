@@ -49,5 +49,6 @@ df_id['ensembl-gene'] = ensbl_gene_id
 df_id['ensembl-transcript'] = ensbl_transcript_id
 # df_id['ensembl-log'] = log
 
+df_id.write('../converted_id.csv', sep='\t')
 
 # df_rna = pd.read_csv('../ENCFF297CNO.tsv', sep='\t')
