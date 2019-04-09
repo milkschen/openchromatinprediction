@@ -7,6 +7,7 @@ import ast
 df_converted_id = pd.read_csv('../converted_id.csv', sep='\t', header=0, index_col=0)
 df_expression_matrix_1 = pd.read_csv('../ENCFF297CNO.tsv', sep='\t', header = 0, index_col = False)
 df_expression_matrix_2 = pd.read_csv('../ENCFF879WBJ.tsv', sep='\t', header = 0, index_col = False)
+df_expression_matrix_3 = pd.read_csv('../ENCFF285HUZ.tsv', sep='\t', header = 0, index_col = False)
 
 # print(df_converted_id.shape, df_expression_matrix_1.shape, df_expression_matrix_2.shape)
 
@@ -14,10 +15,12 @@ df_expression_matrix_2 = pd.read_csv('../ENCFF879WBJ.tsv', sep='\t', header = 0,
 converted_id_matrix = df_converted_id.to_numpy()
 expression_matrix_1 = df_expression_matrix_1.to_numpy()
 expression_matrix_2 = df_expression_matrix_2.to_numpy()
+expression_matrix_3 = df_expression_matrix_3.to_numpy()
 
 converted_id_headers = list(df_converted_id)
 expression_matrix_1_headers = list(df_expression_matrix_1)
 expression_matrix_2_headers = list(df_expression_matrix_2)
+expression_matrix_3_headers = list(df_expression_matrix_3)
 
 # print(converted_id_matrix.shape, expression_matrix_1.shape, expression_matrix_2.shape)
 
@@ -31,7 +34,9 @@ transcript_names = converted_id_matrix[:,4]
 # tpm matrices
 tpm_1 = np.zeros((TF_names.shape[0]))
 tpm_2 = np.zeros((TF_names.shape[0]))
+tpm_3 = np.zeros((TF_names.shape[0]))
 
+##### ENCFF297CNO.tsv #####
 for n in range(0, len(ensembl_names)):
 	# print(n)
 	for r in range(0, len(expression_matrix_1)):
@@ -51,6 +56,7 @@ for n in range(0, len(ensembl_names)):
 
 print(tpm_1)
 
+##### ENCFF879WBJ.tsv #####
 e1 = 0
 e2 = 0
 e3 = 0
@@ -101,9 +107,33 @@ for n in range(0, len(ensembl_names)):
 
 					else:
 						tpm_2[n] += expression_matrix_2[r][5]
-
 print(tpm_2)
 print(e1,e2,e3)
 
+##### ENCFF285HUZ.tsv #####
+for n in range(0, len(ensembl_names)):
+	# print(n)
+	for r in range(0, len(expression_matrix_3)):
+		if pd.isna(ensembl_names[n]):
+			continue
+		if expression_matrix_3[r][1].startswith(ensembl_names[n]):
+			# check if only one transcript is present
+			if len(transcript_names[n]) == 15:
+				if expression_matrix_3[r][0].startswith(transcript_names[n]):
+					tpm_3[n] += expression_matrix_3[r][5]
+			else:
+				# get a list of transcripts that are present
+				transcripts = ast.literal_eval(transcript_names[n])
+				for t in transcripts:
+					if expression_matrix_3[r][0].startswith(t):
+						tpm_3[n] += expression_matrix_3[r][5]
 
+print(tpm_3)
+
+##### Write to .CSV file ###
+
+# currently not including transcripts
+data = np.array([TF_names, gene_names, ensembl_names, tpm_1, tpm_2, tpm_3])
+data = data.T
+np.savetxt("../expression_levels.csv", data, delimiter='\t', header="MA, gene_name, ensembl_name, ENCFF297CNO_TPM, ENCFF879WBJ_TPM, ENCFF285HUZ_TPM", fmt="%s")
 
