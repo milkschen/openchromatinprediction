@@ -135,5 +135,5 @@ print(tpm_3)
 # currently not including transcripts
 data = np.array([TF_names, gene_names, ensembl_names, tpm_1, tpm_2, tpm_3])
 data = data.T
-np.savetxt("../expression_levels.csv", data, delimiter='\t', header="MA, gene_name, ensembl_name, ENCFF297CNO_TPM, ENCFF879WBJ_TPM, ENCFF285HUZ_TPM", fmt="%s")
+np.savetxt("../expression_levels.csv", data, delimiter='\t', header="MA\t gene_name\t ensembl_name\t ENCFF297CNO_TPM\t ENCFF879WBJ_TPM\t ENCFF285HUZ_TPM", fmt="%s")
 
