@@ -6,13 +6,13 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('motif_matrix' , help="<cell_all_matrix.tsv> number of significant TF motif matches at each site")
 parser.add_argument('TF_expression' , help="<exp.csv> expression level of each TF under different conditions")
-# parser.add_argument('out_prefix', help="prefix for output")
+parser.add_argument('out_directory', help="output directory")
 
 args = vars(parser.parse_args())
 
 matrix_fname = args['motif_matrix']
 exp_fname = args['TF_expression']
-# out_prefix = args['out_prefix']
+out_dir = args['out_directory']
 dnase_prefix = matrix_fname.rstrip('_all_matrix.tsv')
 
 matrix = np.loadtxt(matrix_fname, delimiter='\t')
@@ -38,7 +38,7 @@ for rnaseq in rnaseq_names:
 		colID = i + n_TFs
 		exp_matrix[:, colID] = exp_list[i] * matrix[:, i]
 	
-	out_fname = '%s_%s_matrix.tsv' %(dnase_prefix, rnaseq)
+	out_fname = '%s/%s_%s_matrix.tsv' %(out_dir, dnase_prefix, rnaseq)
 	np.savetxt(out_fname, exp_matrix, delimiter='\t')
 	# break
 
