@@ -1,0 +1,10 @@
+Wed Apr 10 21:09:55 2019
+Matrix file: ENCFF998CFZ_ENCFF853TRI_TPM_matrix.tsv
+Number of true labels: 78138
+Training a logistic regression classifier...
+
+Logistic regression classifier:
+
+optimized C = 1291.55
+test set score = 0.76
+auc = 0.83

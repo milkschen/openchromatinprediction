@@ -1,0 +1,10 @@
+Wed Apr 10 22:28:07 2019
+Matrix file: K562_rep1_ENCFF297CNO_TPM_matrix.tsv
+Number of true labels: 263576
+Training a logistic regression classifier...
+
+Logistic regression classifier:
+
+optimized C = 1291.55
+test set score = 0.75
+auc = 0.83
