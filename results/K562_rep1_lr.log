@@ -1,4 +1,10 @@
-Thu Apr 11 04:38:55 2019
-Matrix file: K562_rep1_all_matrix.tsv
+Thu Apr 11 11:16:47 2019
+Matrix file: ../K562_rep1_all_matrix.tsv
 Number of true labels: 263576
 Training a logistic regression classifier...
+
+Logistic regression classifier:
+
+optimized C = 0.36
+test set score = 0.77
+auc = 0.85
