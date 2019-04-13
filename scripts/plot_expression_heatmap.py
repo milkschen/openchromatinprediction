@@ -20,3 +20,6 @@ plt.show()
 print (pearsonr(h.iloc[0], h.iloc[1]))
 print (pearsonr(h.iloc[0], h.iloc[2]))
 print (pearsonr(h.iloc[1], h.iloc[2]))
+
+print (pearsonr(h.iloc[0], h.iloc[3]))
+print (pearsonr(h.iloc[0], h.iloc[4]))
