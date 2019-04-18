@@ -116,3 +116,8 @@ for feature in range(0, 1074):
 # LinAlgError: Singular matrix
 
 rej2b, pValsCorrected2b, aS2b, aB2b = multipletests(pVals2b, method = 'fdr_bh')
+
+
+
+### Manhattan plot ###
+# TODO
