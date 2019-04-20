@@ -1,0 +1,10 @@
+Sat Apr 20 18:34:57 2019
+Matrix file: ENCFF342EGB_ENCFF305QBE_TPM_matrix_weighted_counts_only.tsv
+Number of true labels: 56659
+Training a logistic regression classifier...
+
+Logistic regression classifier:
+
+optimized C = 0.01
+test set score = 0.82
+auc = 0.90

@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 import pandas as pd 
 import numpy as np 
-
+from os import path
 import argparse
 
 parser = argparse.ArgumentParser()
@@ -14,7 +14,7 @@ args = vars(parser.parse_args())
 matrix_fname = args['motif_matrix']
 exp_fname = args['TF_expression']
 out_dir = args['out_directory']
-dnase_prefix = matrix_fname.rstrip('_all_matrix.tsv')
+dnase_prefix = path.basename(matrix_fname).rstrip('_all_matrix.tsv')
 
 matrix = np.loadtxt(matrix_fname, delimiter='\t')
 exp_table = pd.read_csv(exp_fname, sep='\t', index_col=0)
@@ -25,8 +25,8 @@ exp_matrix = np.zeros((n_sites, n_TFs))
 
 # Matrix contains motif counts weighted by expression level of the corresponding TF
 
-rnaseq_names = ["ENCFF297CNO_TPM", "ENCFF285HUZ_TPM"]
-# rnaseq_names = ["ENCFF853TRI_TPM", "ENCFF305QBE_TPM"]
+#rnaseq_names = ["ENCFF297CNO_TPM", "ENCFF285HUZ_TPM"]
+rnaseq_names = ["ENCFF853TRI_TPM", "ENCFF305QBE_TPM"]
 
 for rnaseq in rnaseq_names:
 	
