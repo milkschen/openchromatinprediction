@@ -18,13 +18,17 @@ corr_weightedcount.columns = corr_weightedcount.columns - 537
 
 plt.figure(1)
 plt.subplot(1, 2, 1)
-sns.heatmap(corr_count, cmap='YlGnBu')
+clustergrid_count = sns.clustermap(corr_count, cmap='YlGnBu')
+# sns.heatmap(corr_count, cmap='YlGnBu')
 plt.title('Motif count only')
 plt.xlabel('Motif id')
 plt.ylabel('Motif id')
 plt.subplot(1, 2, 2)
-sns.heatmap(corr_weightedcount, cmap='YlGnBu')
+clustergrid_weightedcount = sns.clustermap(corr_weightedcount, cmap='YlGnBu')
+# sns.heatmap(corr_weightedcount, cmap='YlGnBu')
 plt.title('Weighted motif count')
 plt.xlabel('Motif id')
 plt.ylabel('Motif id')
 plt.show()
+
+# tf_count = (corr_count!=1) & (corr_count>0.5) * 1
