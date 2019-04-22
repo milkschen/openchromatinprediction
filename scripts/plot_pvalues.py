@@ -13,6 +13,36 @@ for i, v in enumerate(df1.sort_values('PValue')['PValue']):
         # print (i, v)
         break
 
+#: histogram using -10log(pvalue), with INF ceiled at P_CEIL
+P_CEIL = 1000
+df1['logp'] = -np.log(df1['PValue'])
+num_zero_pvalue = 0
+for i, v in enumerate(df1['logp']):
+    if v > P_CEIL:
+        df1['logp'].iloc[i] = P_CEIL
+        num_zero_pvalue += 1
+x = df1['logp']
+sns.distplot(x, kde=False, axlabel='-log(pvalue)', bins=100)
+plt.yscale('log')
+plt.ylabel('counts')
+plt.show()
+plt.clf()
+
+#: histogram using raw p values
+sns.distplot(df1, kde=False, axlabel='pvalue')
+plt.xscale('log')
+plt.yscale('log')
+plt.ylabel('counts')
+plt.show()
+plt.clf()
+
+#: cumulative histogram
+sns.distplot(df1, kde=False, axlabel='pvalue', hist_kws=dict(cumulative=True))
+plt.yscale('log')
+plt.ylabel('counts')
+plt.show()
+plt.clf()
+
 for i in range(df1.shape[0]):
     if df1['PValue'][df1.index[i]] == 0:
         df1['PValue'][df1.index[i]] = min_not_inf
