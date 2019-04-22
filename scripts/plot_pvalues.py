@@ -25,6 +25,7 @@ x = df1['logp']
 sns.distplot(x, kde=False, axlabel='-log(pvalue)', bins=100)
 plt.yscale('log')
 plt.ylabel('counts')
+plt.title('Histogram of motif significance (cell line: GM12878; x-axis is saturated at {0})'.format(P_CEIL))
 plt.show()
 plt.clf()
 
