@@ -3,15 +3,15 @@ import numpy as np
 import mygene
 import ast
 
-# get data
+### This file extracts the expression levels from different .tsv files, so that we have multiple replicates per cell line. ###
+
+# get data from different TSV files
 df_converted_id = pd.read_csv('../converted_id.csv', sep='\t', header=0, index_col=0)
 df_expression_matrix_1 = pd.read_csv('../ENCFF297CNO.tsv', sep='\t', header = 0, index_col = False)
 df_expression_matrix_2 = pd.read_csv('../ENCFF879WBJ.tsv', sep='\t', header = 0, index_col = False)
 df_expression_matrix_3 = pd.read_csv('../ENCFF285HUZ.tsv', sep='\t', header = 0, index_col = False)
 df_expression_matrix_4 = pd.read_csv('../ENCFF853TRI.tsv', sep='\t', header = 0, index_col = False)
 df_expression_matrix_5 = pd.read_csv('../ENCFF305QBE.tsv', sep='\t', header = 0, index_col = False)
-
-# print(df_converted_id.shape, df_expression_matrix_1.shape, df_expression_matrix_2.shape)
 
 # extract into numpy arrays
 converted_id_matrix = df_converted_id.to_numpy()
@@ -21,6 +21,7 @@ expression_matrix_3 = df_expression_matrix_3.to_numpy()
 expression_matrix_4 = df_expression_matrix_4.to_numpy()
 expression_matrix_5 = df_expression_matrix_5.to_numpy()
 
+# get the names
 converted_id_headers = list(df_converted_id)
 expression_matrix_1_headers = list(df_expression_matrix_1)
 expression_matrix_2_headers = list(df_expression_matrix_2)
@@ -28,14 +29,10 @@ expression_matrix_3_headers = list(df_expression_matrix_3)
 expression_matrix_4_headers = list(df_expression_matrix_4)
 expression_matrix_5_headers = list(df_expression_matrix_5)
 
-# print(converted_id_matrix.shape, expression_matrix_1.shape, expression_matrix_2.shape)
-
 TF_names = converted_id_matrix[:,0]
 gene_names = converted_id_matrix[:,2]
 ensembl_names = converted_id_matrix[:,3]
 transcript_names = converted_id_matrix[:,4]
-
-# print(TF_names.shape, gene_names.shape, ensembl_names.shape, transcript_names.shape)
 
 # tpm matrices
 tpm_1 = np.zeros((TF_names.shape[0]))
