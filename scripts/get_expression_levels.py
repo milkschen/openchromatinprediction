@@ -2,16 +2,32 @@ import pandas as pd
 import numpy as np
 import mygene
 import ast
+import argparse
 
 ### This file extracts the expression levels from different .tsv files, so that we have multiple replicates per cell line. ###
 
+parser = argparse.ArgumentParser()
+parser.add_argument('ConvertedIDs' , help="The .csv file containing the converted IDs (e.g. converted_id.csv)")
+parser.add_argument('EM1' , help="The .tsv file containing the first expression matrix (ENCFF297CNO.tsv)")
+parser.add_argument('EM2' , help="The .tsv file containing the second expression matrix (ENCFF879WBJ.tsv)")
+parser.add_argument('EM3' , help="The .tsv file containing the third expression matrix (ENCFF285HUZ.ts)")
+parser.add_argument('EM4' , help="The .tsv file containing the fourth expression matrix (ENCFF853TRI.tsv)")
+parser.add_argument('EM5' , help="The .tsv file containing the fifth expression matrix (ENCFF305QBE.tsv)")
+args = vars(parser.parse_args())
+idFile = args['ConvertedIDs']
+em1File = args['EM1']
+em2File = args['EM2']
+em3File = args['EM3']
+em4File = args['EM4']
+em5File = args['EM5']
+
 # get data from different TSV files
-df_converted_id = pd.read_csv('../converted_id.csv', sep='\t', header=0, index_col=0)
-df_expression_matrix_1 = pd.read_csv('../ENCFF297CNO.tsv', sep='\t', header = 0, index_col = False)
-df_expression_matrix_2 = pd.read_csv('../ENCFF879WBJ.tsv', sep='\t', header = 0, index_col = False)
-df_expression_matrix_3 = pd.read_csv('../ENCFF285HUZ.tsv', sep='\t', header = 0, index_col = False)
-df_expression_matrix_4 = pd.read_csv('../ENCFF853TRI.tsv', sep='\t', header = 0, index_col = False)
-df_expression_matrix_5 = pd.read_csv('../ENCFF305QBE.tsv', sep='\t', header = 0, index_col = False)
+df_converted_id = pd.read_csv(idFile, sep='\t', header=0, index_col=0)
+df_expression_matrix_1 = pd.read_csv(em1File, sep='\t', header = 0, index_col = False)
+df_expression_matrix_2 = pd.read_csv(em2File, sep='\t', header = 0, index_col = False)
+df_expression_matrix_3 = pd.read_csv(em3File, sep='\t', header = 0, index_col = False)
+df_expression_matrix_4 = pd.read_csv(em4File, sep='\t', header = 0, index_col = False)
+df_expression_matrix_5 = pd.read_csv(em5File, sep='\t', header = 0, index_col = False)
 
 # extract into numpy arrays
 converted_id_matrix = df_converted_id.to_numpy()

@@ -1,12 +1,18 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import argparse
 
 ### This file plots the correlation heatmap between features ###
 
+parser = argparse.ArgumentParser()
+parser.add_argument('Input_File' , help="The .tsv file containing the TPM matrices (e.g. ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv)")
+args = vars(parser.parse_args())
+fname = args['Input_File']
+
 # read in the files
 # df1 = pd.read_csv('ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv', header=None, sep='\t')
-df1 = pd.read_csv('ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv', header=None, sep='\t')
+df1 = pd.read_csv(fname, header=None, sep='\t')
 
 # get the counts and weighted counts
 df_count = df1.iloc[:,:537]

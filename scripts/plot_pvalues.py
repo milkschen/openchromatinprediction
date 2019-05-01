@@ -2,16 +2,25 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
+import argparse
 
 ### This file plots the p-values obtained from GWAS_selection.py ###
+# python3 plot_pvalues.py ../GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.csv
+# python3 plot_pvalues.py ../GWAS_pvalues_K562_rep1_ENCFF285HUZ.csv
 
-GM12878 = False
-# read in the data
-if GM12878:
-    df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.csv', sep='\t', index_col=0)
-# df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv', sep='\t', index_col=0)
-else:
-    df1 = pd.read_csv('GWAS_pvalues_K562_rep1_ENCFF285HUZ.csv', sep='\t', index_col=0)
+# input
+parser = argparse.ArgumentParser()
+parser.add_argument('Input_File' , help="The .csv file containing the p-values (e.g. GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv)")
+args = vars(parser.parse_args())
+fname = args['Input_File']
+
+# GM12878 = False
+# # read in the data
+# if GM12878:
+#     df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.csv', sep='\t', index_col=0)
+df1 = pd.read_csv(fname, sep='\t', index_col=0)
+# else:
+#     df1 = pd.read_csv('GWAS_pvalues_K562_rep1_ENCFF285HUZ.csv', sep='\t', index_col=0)
 
 #: histogram using -10log(pvalue), with INF ceiled at P_CEIL
 P_CEIL = 1000

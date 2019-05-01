@@ -1,10 +1,20 @@
 import pandas as pd
 import mygene
+import argparse
 
 ### This file does the conversion from MA IDs (in the JASPAR database) to Ensembl IDs###
+# convert_gene_id.py ../human_pwm_ids_sorted.txt ./converted_id.csv
+
+# input
+parser = argparse.ArgumentParser()
+parser.add_argument('ID_File' , help=".txt file containing the PWM IDs (e.g. human_pwm_ids_sorted.txt)")
+parser.add_argument('Output_File' , help="The .csv file to be outputted (e.g. converted_id.csv)")
+args = vars(parser.parse_args())
+fname = args['ID_File']
+csvname = args['Output_File']
 
 # read in the PWM IDs
-df_id = pd.read_csv('../human_pwm_ids_sorted.txt', sep=' ', header=None, index_col=0)
+df_id = pd.read_csv(fname, sep=' ', header=None, index_col=0)
 df_id.index = range(0, df_id.shape[0])
 # get the relevant columns - MA and Gene Name
 df_id.columns = ['MA', 'gene_name']
@@ -62,4 +72,4 @@ df_id['ensembl-gene'] = ensbl_gene_id
 df_id['ensembl-transcript'] = ensbl_transcript_id
 
 # export CSV
-df_id.to_csv('../converted_id.csv', sep='\t')
+df_id.to_csv(csvname, sep='\t')

@@ -5,16 +5,28 @@ import statsmodels.formula.api as smf
 from statsmodels.discrete.discrete_model import Logit
 from statsmodels.stats.multitest import multipletests
 
+import argparse
+
 ### This file analyzes the p-value of each of the features, by regressing non-zero columns with the labels and reporting the corrected p-values. ###
+
+# input
+parser = argparse.ArgumentParser()
+parser.add_argument('Labels' , help="The .csv file containing labels (e.g. K562_rep1_labels.csv")
+parser.add_argument('File_1' , help="The first feature .tsv file (e.g. K562_rep1_ENCFF285HUZ_TPM_matrix.tsv)")
+parser.add_argument('File_2' , help="The second feature .tsv file (e.g. K562_rep1_ENCFF297CNO_TPM_matrix.tsv)")
+args = vars(parser.parse_args())
+labelsFile = args['ID_File']
+file1 = args['File_1']
+file2 = args['File_2']
 
 # paths to the TPM and labels files
 # labelsFile = '/Users/arun/Desktop/JHU/spring2019/CompGenomics/FinalProject/GWASSelection/ENCFF342EGB_labels.csv'
 # file1 = '/Users/arun/Desktop/JHU/spring2019/CompGenomics/FinalProject/GWASSelection/ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv'
 # file2 = '/Users/arun/Desktop/JHU/spring2019/CompGenomics/FinalProject/GWASSelection/ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv'
 
-labelsFile = '/home-4/xfeng17@jhu.edu/openchromatinprediction/K562_rep1_labels.csv'
-file1 = '/home-4/xfeng17@jhu.edu/with_expression/K562_rep1_ENCFF285HUZ_TPM_matrix.tsv'
-file2 = '/home-4/xfeng17@jhu.edu/with_expression/K562_rep1_ENCFF297CNO_TPM_matrix.tsv'
+# labelsFile = '/home-4/xfeng17@jhu.edu/openchromatinprediction/K562_rep1_labels.csv'
+# file1 = '/home-4/xfeng17@jhu.edu/with_expression/K562_rep1_ENCFF285HUZ_TPM_matrix.tsv'
+# file2 = '/home-4/xfeng17@jhu.edu/with_expression/K562_rep1_ENCFF297CNO_TPM_matrix.tsv'
 
 labels_matrix = np.loadtxt(labelsFile, delimiter = ',')
 file1_matrix = np.loadtxt(file1, delimiter = '\t')

@@ -2,10 +2,17 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import pearsonr
+import argparse
 
 ### This file plots the coefficients ###
 
-df = pd.read_csv('ENCFF342EGB_ENCFF853TRI_TPM_lr_ranks.tsv', sep='\t', header=None)
+# input
+parser = argparse.ArgumentParser()
+parser.add_argument('Input_File' , help=".tsv file containing the coefficients to be plotted (e.g. ENCFF342EGB_ENCFF853TRI_TPM_lr_ranks.tsv)")
+args = vars(parser.parse_args())
+fname = args['Input_File']
+
+df = pd.read_csv(fname, sep='\t', header=None)
 
 # get the coefficients
 co_const = []
