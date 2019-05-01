@@ -5,31 +5,30 @@ import seaborn as sns
 
 ### This file plots the p-values obtained from GWAS_selection.py ###
 
+GM12878 = False
 # read in the data
-# df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.csv', sep='\t', index_col=0)
-df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv', sep='\t', index_col=0)
-
-# get the minimum value
-min_not_inf = 0
-for i, v in enumerate(df1.sort_values('PValue')['PValue']):
-    if float(v) > 0:
-        min_not_inf = v
-        # print (i, v)
-        break
+if GM12878:
+    df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.csv', sep='\t', index_col=0)
+# df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv', sep='\t', index_col=0)
+else:
+    df1 = pd.read_csv('GWAS_pvalues_K562_rep1_ENCFF285HUZ.csv', sep='\t', index_col=0)
 
 #: histogram using -10log(pvalue), with INF ceiled at P_CEIL
 P_CEIL = 1000
-df1['logp'] = -np.log(df1['PValue'])
+df1['-logp'] = -np.log(df1['PValue'])
 num_zero_pvalue = 0
-for i, v in enumerate(df1['logp']):
+for i, v in enumerate(df1['-logp']):
     if v > P_CEIL:
-        df1['logp'].iloc[i] = P_CEIL
+        df1['-logp'].iloc[i] = P_CEIL
         num_zero_pvalue += 1
-x = df1['logp']
+x = df1['-logp']
 sns.distplot(x, kde=False, axlabel='-log(pvalue)', bins=100)
 plt.yscale('log')
 plt.ylabel('counts')
-plt.title('Histogram of motif significance (cell line: GM12878; x-axis is saturated at {0})'.format(P_CEIL))
+# if GM12878:
+#     plt.title('Histogram of motif significance (cell line: GM12878; x-axis is saturated at {0})'.format(P_CEIL))
+# else:
+#     plt.title('Histogram of motif significance (cell line: K562; x-axis is saturated at {0})'.format(P_CEIL))
 plt.show()
 plt.clf()
 
@@ -47,6 +46,14 @@ plt.yscale('log')
 plt.ylabel('counts')
 plt.show()
 plt.clf()
+
+# get the minimum value
+min_not_inf = 0
+for i, v in enumerate(df1.sort_values('PValue')['PValue']):
+    if float(v) > 0:
+        min_not_inf = v
+        # print (i, v)
+        break
 
 # update to the minimum value
 for i in range(df1.shape[0]):
