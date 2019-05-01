@@ -6,13 +6,16 @@ from statsmodels.discrete.discrete_model import Logit
 from statsmodels.stats.multitest import multipletests
 
 # paths to the files
-labelsFile = '/Users/arun/Desktop/JHU/spring2019/CompGenomics/FinalProject/GWASSelection/ENCFF342EGB_labels.csv'
-file1 = '/Users/arun/Desktop/JHU/spring2019/CompGenomics/FinalProject/GWASSelection/ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv'
-file2 = '/Users/arun/Desktop/JHU/spring2019/CompGenomics/FinalProject/GWASSelection/ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv'
+labelsFile = 'ENCFF342EGB_labels.csv'
+file1 = 'ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv'
+file2 = 'ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv'
 
 labels_matrix = np.loadtxt(labelsFile, delimiter = ',')
 file1_matrix = np.loadtxt(file1, delimiter = '\t')
 file2_matrix = np.loadtxt(file2, delimiter = '\t')
+
+#: shuffling labels for testing
+# np.random.shuffle(labels_matrix)
 
 print(labels_matrix.shape)
 # (109516,)
@@ -146,8 +149,8 @@ file1_data = file1_data.T
 file2_data = np.array([nz2, pValsCorrected2b])
 file2_data = file2_data.T
 
-np.savetxt("../GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.csv", file1_data, delimiter='\t', header="FeatureNumber\tPValue", fmt="%s")
-np.savetxt("../GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv", file2_data, delimiter='\t', header="FeatureNumber\tPValue", fmt="%s")
+# np.savetxt("../GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.tsv", file1_data, delimiter='\t', header="FeatureNumber\tPValue", fmt="%s")
+# np.savetxt("../GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.tsv", file2_data, delimiter='\t', header="FeatureNumber\tPValue", fmt="%s")
 
-### Manhattan plot ###
-# TODO
+# np.savetxt("GWAS_pvalues_ENCFF342EGB_ENCFF305QBE-shuffled.tsv", file1_data, delimiter='\t', header="FeatureNumber\tPValue", fmt="%s")
+# np.savetxt("GWAS_pvalues_ENCFF342EGB_ENCFF853TRI-shuffled.tsv", file2_data, delimiter='\t', header="FeatureNumber\tPValue", fmt="%s")
