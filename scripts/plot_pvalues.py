@@ -3,9 +3,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 
+### This file plots the p-values obtained from GWAS_selection.py ###
+
+# read in the data
 # df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF305QBE.csv', sep='\t', index_col=0)
 df1 = pd.read_csv('GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv', sep='\t', index_col=0)
 
+# get the minimum value
 min_not_inf = 0
 for i, v in enumerate(df1.sort_values('PValue')['PValue']):
     if float(v) > 0:
@@ -44,6 +48,7 @@ plt.ylabel('counts')
 plt.show()
 plt.clf()
 
+# update to the minimum value
 for i in range(df1.shape[0]):
     if df1['PValue'][df1.index[i]] == 0:
         df1['PValue'][df1.index[i]] = min_not_inf
@@ -53,6 +58,8 @@ df1['-10logP'] = -10 * np.log10(df1['PValue'])
 df1['weighted'] = (df1.index < 537)
 g = df1.groupby('weighted').groups
 
+
+# plot
 sns.scatterplot(g[0]-537, y=df1.loc[g[0]]['-10logP'], label='weighted', marker='|')
 sns.scatterplot(g[1], y=df1.loc[g[1]]['-10logP'], label='count', marker='_')
 plt.legend(loc='right')

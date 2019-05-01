@@ -4,6 +4,8 @@ import numpy as np
 from os import path
 import argparse
 
+# file is the same as build_matrix.py, but only generates weighted counts
+
 parser = argparse.ArgumentParser()
 parser.add_argument('motif_matrix' , help="<cell_all_matrix.tsv> number of significant TF motif matches at each site")
 parser.add_argument('TF_expression' , help="<exp.csv> expression level of each TF under different conditions")
@@ -29,14 +31,11 @@ exp_matrix = np.zeros((n_sites, n_TFs))
 rnaseq_names = ["ENCFF853TRI_TPM", "ENCFF305QBE_TPM"]
 
 for rnaseq in rnaseq_names:
-	
 	exp_list = exp_table[rnaseq]
-	
 	for i in range(n_TFs):
 		colID = i
+		# weight
 		exp_matrix[:, colID] = exp_list[i] * matrix[:, i]
 	
 	out_fname = '%s/%s_%s_matrix_weighted_counts_only.tsv' %(out_dir, dnase_prefix, rnaseq)
 	np.savetxt(out_fname, exp_matrix, delimiter='\t')
-	# break
-
