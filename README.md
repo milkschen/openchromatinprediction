@@ -43,7 +43,7 @@ python3 GWAS_selection.py ENCFF342EGB_labels.csv ENCFF342EGB_ENCFF305QBE_TPM_mat
 
 ### Plotting
 
-Plotting the expression levels:
+Plotting the expression levels (Figure 2a):
 ```shell
 python3 plot_expression.py expression_levels.csv
 ```
@@ -51,11 +51,11 @@ Plotting the expression heat map:
 ```shell
 python3 plot_expression_heatmap.py expression_levels.csv
 ```
-Plotting the correlation heatmap:
+Plotting the correlation heatmap (Figure 2b):
 ```shell
 python3 plot_correlation_heatmap.py ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv
 ```
-Plotting p-values:
+Plotting p-values (Figure 3a):
 ```shell
 python3 plot_pvalues.py GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv
 ```
