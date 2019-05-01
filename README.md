@@ -1,7 +1,8 @@
 # Prediction of Pioneer Transcription Factors Using Chromatin Accessibility and Gene Expression
 
 ## Project Overview
-TODO
+
+Our project has been coded and run using Python 3.X. All code has been commented to indicate its function. Required packages can be found in `requirements.txt`.
 
 ## Step-by-step walkthrough of our project
 ### Download the data:
