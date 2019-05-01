@@ -33,7 +33,11 @@ python3 get_expression_levels.py converted_id.csv ENCFF297CNO.tsv ENCFF879WBJ.ts
 
 
 ### Significance Analysis
-
+Get the corrected p-values of each of the features:
+```shell
+python3 GWAS_selection.py K562_rep1_labels.csv K562_rep1_ENCFF285HUZ_TPM_matrix.tsv K562_rep1_ENCFF297CNO_TPM_matrix.tsv
+python3 GWAS_selection.py ENCFF342EGB_labels.csv ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv
+```
 
 ### Plotting
 
@@ -44,4 +48,8 @@ python3 plot_expression.py expression_levels.csv
 Plotting the expression heat map:
 ```shell
 python3 plot_expression_heatmap.py expression_levels.csv
+```
+Plotting p-values:
+```shell
+python3 plot_pvalues.py GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv
 ```
