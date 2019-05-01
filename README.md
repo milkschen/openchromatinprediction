@@ -1,5 +1,7 @@
 # Prediction of Pioneer Transcription Factors Using Chromatin Accessibility and Gene Expression
 
+## Nae-Chyun Chen, Arun Das, Xinyu Feng
+
 ## Project Overview
 
 Our project has been coded and run using Python 3.X, on both our personal laptops (OSX) and on MARCC. All code has been commented to indicate its function. Required packages can be found in `requirements.txt`.
