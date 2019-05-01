@@ -1,6 +1,7 @@
-# openchromatinprediction
+# Prediction of Pioneer Transcription Factors Using Chromatin Accessibility and Gene Expression
 
-# openchromatinprediction
+## Project Overview
+TODO
 
 ## Step-by-step walkthrough of our project
 ### Download the data:
@@ -49,7 +50,15 @@ Plotting the expression heat map:
 ```shell
 python3 plot_expression_heatmap.py expression_levels.csv
 ```
+Plotting the correlation heatmap:
+```shell
+python3 plot_correlation_heatmap.py ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv
+```
 Plotting p-values:
 ```shell
 python3 plot_pvalues.py GWAS_pvalues_ENCFF342EGB_ENCFF853TRI.csv
+```
+Plotting coefficients:
+```shell
+python3 plot_coeff.py ENCFF342EGB_ENCFF853TRI_TPM_lr_ranks.tsv
 ```
