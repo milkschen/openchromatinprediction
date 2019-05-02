@@ -33,8 +33,11 @@ Get expression levels from the replicates:
 python3 get_expression_levels.py converted_id.csv ENCFF297CNO.tsv ENCFF879WBJ.tsv ENCFF285HUZ.tsv ENCFF853TRI.tsv ENCFF305QBE.tsv
 ```
 
-### TODO - add intermediate steps
-
+### TODO - check
+### Train a logistic classifier
+```shell
+./11-classifier2.py -r ENCFF342EGB_ENCFF297CNO_TPM_matrix.tsv 56659 ../human_pwm_ids_sorted.txt lr ENCFF342EGB_ENCFF297CNO_TPM_lr
+```
 
 ### Significance Analysis
 Get the corrected p-values of each of the features:
