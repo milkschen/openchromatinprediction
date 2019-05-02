@@ -88,3 +88,9 @@ Plotting coefficients:
 ```shell
 python3 plot_coeff.py ENCFF342EGB_ENCFF853TRI_TPM_lr_ranks.tsv
 ```
+Plotting coefficients across cell lines:
+```shell
+python3 plot_coeff_cell_lines.py ENCFF342EGB_ENCFF305QBE_TPM_matrix_weighted_counts_only_lr_ranks.tsv
+```
+
+Please look at `plot_roc.py` to see the code used to plot the ROC curve shown in the final report.

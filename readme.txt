@@ -94,3 +94,7 @@ python plot_roc.py
 # Plotting coefficients for different cell lines (Figure 5):
 python plot_coeff_cell_lines.py 
 
+Plotting coefficients across cell lines:
+python3 plot_coeff_cell_lines.py ENCFF342EGB_ENCFF305QBE_TPM_matrix_weighted_counts_only_lr_ranks.tsv
+
+Please look at `plot_roc.py` to see the code used to plot the ROC curve shown in the final report.

@@ -1,8 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import argparse
 
-gm_coef2_fname= "../results/ENCFF342EGB_ENCFF305QBE_TPM_matrix_weighted_counts_only_lr_ranks.tsv"
+parser = argparse.ArgumentParser()
+parser.add_argument('InputFile' , help="ENCFF342EGB_ENCFF305QBE_TPM_matrix_weighted_counts_only_lr_ranks.tsv")
+args = vars(parser.parse_args())
+gm_coef2_fname = args['InputFile']
+
+# gm_coef2_fname= "../results/ENCFF342EGB_ENCFF305QBE_TPM_matrix_weighted_counts_only_lr_ranks.tsv"
 gm_coef2 = pd.read_csv(gm_coef2_fname, sep='\t', header=None, index_col='MOTIF_ID', names=["MOTIF_ID", "TF NAME", "COEF"])
 
 k562_coef_fname= "../results/K562_rep1_ENCFF285HUZ_TPM_matrix_weighted_counts_only_lr_ranks.tsv"
