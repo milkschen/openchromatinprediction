@@ -62,7 +62,7 @@ build_matrix.py ENCFF342EGB_all_matrix.tsv expression_levels.csv .
 
 
 # All *TPM_matrix.tsv files are availabe here:
-	# https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/xfeng17_jh_edu/EhCj3Tdk4NBEhquIVJYfaioB9pPZcaZQU76YgosuKh5sDg?e=onIubH
+# https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/xfeng17_jh_edu/EhCj3Tdk4NBEhquIVJYfaioB9pPZcaZQU76YgosuKh5sDg?e=onIubH
 
 ###########################
 
@@ -93,8 +93,3 @@ python plot_roc.py
 
 # Plotting coefficients for different cell lines (Figure 5):
 python plot_coeff_cell_lines.py 
-
-Plotting coefficients across cell lines:
-python3 plot_coeff_cell_lines.py ENCFF342EGB_ENCFF305QBE_TPM_matrix_weighted_counts_only_lr_ranks.tsv
-
-Please look at `plot_roc.py` to see the code used to plot the ROC curve shown in the final report.
