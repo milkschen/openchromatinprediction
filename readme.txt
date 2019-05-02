@@ -4,6 +4,14 @@ Nae-Chyun Chen, Arun Das, Xinyu Feng
 
 This is our project README - you can find a markdown version in "README.md".
 
+
+##########################
+
+In the next section, we specify how to download the relevant data files.
+
+
+###########################
+
 Here is a step-by-step walkthrough of our project:
 
 Download the data:
@@ -29,6 +37,9 @@ python3 GWAS_selection.py K562_rep1_labels.csv K562_rep1_ENCFF285HUZ_TPM_matrix.
 python3 GWAS_selection.py ENCFF342EGB_labels.csv ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv
 
 XXX
+
+
+###########################
 
 Here is how we generated our plots:
 
