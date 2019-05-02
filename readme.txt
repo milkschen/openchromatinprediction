@@ -7,9 +7,7 @@ This is our project README - you can find a markdown version in "README.md".
 
 ##########################
 
-In the next section, we specify how to download the relevant data files. The data for this project was obtained from the ENCODE project and from the JASPAR dataset. The code to obtain the latter is currently not provided (as it is made up of numerous path sensitive bash scripts) - instead, here is the link to the data:
-
-TODO
+In the next section, we specify how to download the relevant data files. The data for this project was obtained from the ENCODE project and from the JASPAR dataset. The code to obtain the latter is currently not provided (as it is made up of numerous path sensitive bash scripts) - instead, a link to the data is provided below.
 
 A Github repository containing all our code, figures and any additional materials is here:
 
