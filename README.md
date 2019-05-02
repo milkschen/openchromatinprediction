@@ -19,7 +19,6 @@ wget https://www.encodeproject.org/files/ENCFF305QBE/@@download/ENCFF305QBE.tsv
 
 wget https://www.encodeproject.org/files/ENCFF879WBJ/@@download/ENCFF879WBJ.tsv
 ```
-### TODO - add intermediate steps
 
 ### Convert Gene IDs
 Convert JASPAR Gene IDs into Ensembl IDs:
@@ -48,8 +47,6 @@ python3 GWAS_selection.py K562_rep1_labels.csv K562_rep1_ENCFF285HUZ_TPM_matrix.
 
 python3 GWAS_selection.py ENCFF342EGB_labels.csv ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv
 ```
-
-### TODO - add final steps
 
 ### Plotting
 
