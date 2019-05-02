@@ -60,8 +60,9 @@ build_matrix.py ENCFF342EGB_all_matrix.tsv expression_levels.csv .
 11-classifier2.py -r K562_rep1_ENCFF285HUZ_TPM_matrix.tsv 263576 human_pwm_ids_sorted.txt lr K562_rep1_ENCFF285HUZ_TPM_lr_scaled
 11-classifier2.py -r K562_rep1_ENCFF297CNO_TPM_matrix.tsv 263576 human_pwm_ids_sorted.txt lr K562_rep1_ENCFF297CNO_TPM_lr_scaled
 
-# All *TPM_matrix.tsv files are availabe here:
-# https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/xfeng17_jh_edu/EhCj3Tdk4NBEhquIVJYfaioB9pPZcaZQU76YgosuKh5sDg?e=onIubH
+# All *TPM_matrix.tsv files are available here:
+
+https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/xfeng17_jh_edu/EhCj3Tdk4NBEhquIVJYfaioB9pPZcaZQU76YgosuKh5sDg?e=onIubH
 
 ###########################
 
