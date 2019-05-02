@@ -63,8 +63,8 @@ python3 GWAS_selection.py ENCFF342EGB_labels.csv ENCFF342EGB_ENCFF305QBE_TPM_mat
 ```
 
 ### Additional Files
-All .tsv files are availabe here:
-https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/xfeng17_jh_edu/EQv52V0aCu5HtKhjZ2_jIvcBDHda4th3rxM9PMOOITao-w?e=fU7HOS
+All *TPM_matrix.tsv files are availabe here:
+https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/xfeng17_jh_edu/EhCj3Tdk4NBEhquIVJYfaioB9pPZcaZQU76YgosuKh5sDg?e=onIubH
 
 ### Plotting
 
