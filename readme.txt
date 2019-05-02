@@ -11,6 +11,10 @@ In the next section, we specify how to download the relevant data files. The dat
 
 TODO
 
+A Github repository containing all our code, figures and any additional materials is here:
+
+https://github.com/milkschen/openchromatinprediction
+
 ###########################
 
 Here is a step-by-step walkthrough of our project:
