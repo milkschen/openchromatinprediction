@@ -20,6 +20,9 @@ wget https://www.encodeproject.org/files/ENCFF297CNO/@@download/ENCFF297CNO.tsv
 wget https://www.encodeproject.org/files/ENCFF853TRI/@@download/ENCFF853TRI.tsv
 wget https://www.encodeproject.org/files/ENCFF305QBE/@@download/ENCFF305QBE.tsv
 wget https://www.encodeproject.org/files/ENCFF879WBJ/@@download/ENCFF879WBJ.tsv
+wget https://www.encodeproject.org/files/ENCFF342EGB/@@download/ENCFF342EGB.bed.gz # GM12878 DNase-seq
+wget https://www.encodeproject.org/files/ENCFF917OKK/@@download/ENCFF917OKK.bed.gz # K562 DNase-seq
+
 
 XXX
 
@@ -31,13 +34,28 @@ python3 get_expression_levels.py converted_id.csv ENCFF297CNO.tsv ENCFF879WBJ.ts
 
 XXX
 
-
 Get the corrected p-values of each of the features:
 python3 GWAS_selection.py K562_rep1_labels.csv K562_rep1_ENCFF285HUZ_TPM_matrix.tsv K562_rep1_ENCFF297CNO_TPM_matrix.tsv
 python3 GWAS_selection.py ENCFF342EGB_labels.csv ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv
 
 XXX
 
+Generating expression weighted training data:
+build_matrix.py K562_rep1_all_matrix.tsv expression_levels.csv .
+build_matrix.py ENCFF342EGB_all_matrix.tsv expression_levels.csv .
+
+(K562_rep1_all_matrix.tsv and ENCFF342EGB_all_matrix.tsv are generated in an outside project and are available upon request)
+
+XXX
+
+Train the logistic regression classifier:
+11-classifier2.py -r ENCFF342EGB_ENCFF305QBE_TPM_matrix.tsv 56659 human_pwm_ids_sorted.txt lr ENCFF342EGB_ENCFF305QBE_TPM_lr_scaled
+11-classifier2.py -r ENCFF342EGB_ENCFF853TRI_TPM_matrix.tsv 56659 human_pwm_ids_sorted.txt lr ENCFF342EGB_ENCFF853TRI_TPM_lr_scaled
+11-classifier2.py -r K562_rep1_ENCFF285HUZ_TPM_matrix.tsv 263576 human_pwm_ids_sorted.txt lr K562_rep1_ENCFF285HUZ_TPM_lr_scaled
+11-classifier2.py -r K562_rep1_ENCFF297CNO_TPM_matrix.tsv 263576 human_pwm_ids_sorted.txt lr K562_rep1_ENCFF297CNO_TPM_lr_scaled
+
+All .tsv files are availabe here:
+https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/xfeng17_jh_edu/EQv52V0aCu5HtKhjZ2_jIvcBDHda4th3rxM9PMOOITao-w?e=fU7HOS
 
 ###########################
 
