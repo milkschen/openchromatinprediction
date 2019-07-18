@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import mygene
+#import mygene
 import ast
 import argparse
 
@@ -12,7 +12,7 @@ parser.add_argument(
     help="The .csv file containing the converted IDs (e.g. converted_id.csv)"
 )
 parser.add_argument(
-    '-l', '--list-matrix',
+    '-l', '--list-matrix-path',
     help="A list of paths to the target expression matrices"
 )
 parser.add_argument(
@@ -21,21 +21,22 @@ parser.add_argument(
 )
 args = parser.parse_args()
 fn_id = args.converted_id
-fn_list_matrix = args.list_matrix
+fn_list_matrix_path = args.list_matrix_path
 fn_output = args.output
 
 # get data from different TSV files
 df_converted_id = pd.read_csv(fn_id, sep='\t', header=0, index_col=0)
-df_list_matrix = pd.read_csv(fn_list_matrix, header=None)
+df_list_matrix_path = pd.read_csv(fn_list_matrix_path, header=0, sep=',')
 
 list_matrix = []
 list_accession = [] #: extracts only accession names
-for fn_expr_mat in df_list_matrix[0]:
+for i in range(df_list_matrix_path.shape[0]):
+    fn_expr_mat = df_list_matrix_path.iloc[i,0]
     df_expr_mat = pd.read_csv(fn_expr_mat, sep='\t')
     list_matrix.append(df_expr_mat)
     fn_expr_mat = fn_expr_mat.split('/')[-1]
     fn_expr_mat = fn_expr_mat.split('.')[0]
-    list_accession.append(fn_expr_mat)
+    list_accession.append(df_list_matrix_path.iloc[i,1] + '-' + fn_expr_mat)
 
 tf_names = df_converted_id['MA']
 gene_names = df_converted_id['gene_name']
@@ -46,30 +47,29 @@ df_out = pd.DataFrame()
 df_out['MA'] = tf_names
 df_out['Gene Name'] = gene_names
 df_out['Ensembl ID'] = ensembl_names
-df_out['Transcript Name'] = transcript_names
+#df_out['Transcript Name'] = transcript_names
 
-# df_out = pd.DataFrame(columns=list_accession)
 for i, mat in enumerate(list_matrix):
     tpm = np.zeros((tf_names.shape[0]))
-    mat = np.matrix(mat)
+    #mat = np.matrix(mat)
+    mat = mat.to_numpy()
     for n in range(0, len(ensembl_names)):
         for r in range(0, len(mat)):
             if pd.isna(ensembl_names[n]):
                 print ('Skip {} : NA'.format(ensembl_names[n]))
-                break
-                # continue
-            if mat[r,1].startswith(ensembl_names[n]):
+                continue
+            if mat[r][1].startswith(ensembl_names[n]):
                 # check if only one transcript is present
                 if len(transcript_names[n]) == 15:
-                    print (transcript_names[n])
-                    if mat[r,0].startswith(transcript_names[n]):
-                        tpm[n] += mat[r,5]
+                    # print (transcript_names[n])
+                    if mat[r][0].startswith(transcript_names[n]):
+                        tpm[n] += mat[r][5]
                 else:
                     # get a list of transcripts that are present
                     transcripts = ast.literal_eval(transcript_names[n])
                     for t in transcripts:
-                        if mat[r,0].startswith(t):
-                            tpm[n] += mat[r,5]
+                        if mat[r][0].startswith(t):
+                            tpm[n] += mat[r][5]
     df_out[list_accession[i]] = tpm
     print ('Finished {}'.format(list_accession[i]))
 
