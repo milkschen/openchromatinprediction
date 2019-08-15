@@ -1,2 +1,2 @@
-**/*.tsv
+**/*.tsv*
 .DS_Store
