@@ -35,8 +35,8 @@ wget https://www.encodeproject.org/files/ENCFF578YTC/@@download/ENCFF578YTC.tsv
 wget https://www.encodeproject.org/files/ENCFF908XTR/@@download/ENCFF908XTR.tsv
 
 ## H1-hESC (Barbara Wold, Caltech)
-wget https://www.encodeproject.org/files/ENCFF289GEC/@@download/ENCFF289GEC.tsv
-wget https://www.encodeproject.org/files/ENCFF466EBZ/@@download/ENCFF466EBZ.tsv
+#wget https://www.encodeproject.org/files/ENCFF289GEC/@@download/ENCFF289GEC.tsv
+#wget https://www.encodeproject.org/files/ENCFF466EBZ/@@download/ENCFF466EBZ.tsv
 
 ## HMEC (Thomas Gingeras, CSHL)
 wget https://www.encodeproject.org/files/ENCFF749LVX/@@download/ENCFF749LVX.tsv
@@ -156,8 +156,8 @@ wget https://www.encodeproject.org/files/ENCFF249UJV/@@download/ENCFF249UJV.tsv
 ## SK-N-SH-RA - no Poly A plus RNA Seq
 
 ## Th2 (John Stamatoyannopoulos, UW)
-wget https://www.encodeproject.org/files/ENCFF979WIG/@@download/ENCFF979WIG.tsv
-wget https://www.encodeproject.org/files/ENCFF879KHB/@@download/ENCFF879KHB.tsv
+#wget https://www.encodeproject.org/files/ENCFF979WIG/@@download/ENCFF979WIG.tsv
+#wget https://www.encodeproject.org/files/ENCFF879KHB/@@download/ENCFF879KHB.tsv
 
 ## WERI-Rb-1 - no Poly A plus RNA Seq
 
